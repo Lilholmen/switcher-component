@@ -10,16 +10,14 @@ type SwitcherProps = {
 
 const Switcher = ({
   onChange,
-  defaultOn,
+  defaultOn = false,
   disabled = false,
   label,
 }: SwitcherProps) => {
-  const [enabled, setEnabled] = useState<boolean>(defaultOn || false);
+  const [enabled, setEnabled] = useState<boolean>(defaultOn);
 
   const toggleSwitcher = (e: any) => {
-    console.log(e);
-
-    onChange(enabled);
+    onChange(!enabled);
     setEnabled(!enabled);
   };
 
@@ -33,7 +31,7 @@ const Switcher = ({
                 checked
                   ? "bg-blue-600 hover:bg-blue-300 active:bg-blue-500"
                   : "bg-blue-300 hover:bg-blue-400 active:bg-blue-600"
-              } relative w-12 flex-none rounded-full p-[3px] disabled:bg-gray-300`}
+              } w-12 flex-none select-none rounded-full p-[3px] outline-none disabled:bg-gray-300`}
               disabled={disabled}
             >
               <div

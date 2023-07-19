@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Switcher from "./components/Switcher";
 
-function App() {
+const foo = (enabled: boolean) =>
+  console.log(`This switcher is ${enabled ? "on" : "off"}`, enabled);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex min-h-screen w-full items-center justify-center bg-sky-50">
+      <div className="grid grid-cols-3 gap-5 rounded-xl bg-white p-12 shadow-lg">
+        <Switcher onChange={foo} />
+        <Switcher onChange={foo} defaultOn />
+        <Switcher onChange={foo} label="Text example" />
+        <Switcher onChange={foo} disabled />
+        <Switcher onChange={foo} defaultOn disabled />
+        <Switcher onChange={foo} label="Text example" disabled />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
